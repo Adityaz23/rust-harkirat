@@ -16,3 +16,24 @@ It achieves the using the :-
 3. Ownership model
 4. Borrowing and references.
 5. Lifetime
+
+### Mutability -> 
+fn main(){
+    let mut  adi = String::from("Hello aditya");
+    adi.push_str(" Soni");
+    println!("The push string is: {}",adi);
+}
+
+## Stack and Heap ->
+Rust has clear rules about stack and heap data management:
+
+**Stack**: Fast allocation and deallocation. Rust uses the stack for most primitive data types and for data where the size is known at compile time (eg: numbers).
+
+**Heap**: Used for data that can grow at runtime, such as vectors or strings.
+
+***Stack stores*** -> Numbers - i32, i64, f64 …
+Booleans - true, false
+Fixed sized arrays (we’ll come to this later)
+
+***Heap Stores*** -> Strings
+Vectors (we’ll come to this later)
