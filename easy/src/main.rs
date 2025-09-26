@@ -172,26 +172,115 @@
 // Now, enum with values ->
     // Define an enum called shape :-
 
-  #[derive(Debug)]
-    enum Shape{
-        Circle(f64),
-        Square(f64),
-        Rectangle(f64,f64),
-    }
+//   #[derive(Debug)]
+    // enum Shape{
+    //     Circle(f64),
+    //     Square(f64),
+    //     Rectangle(f64,f64),
+    // }
 
-    fn cal_area(shape: &Shape)->f64{
-        match shape {
-        Shape::Circle(r) => std::f64::consts::PI * r * r,
-        Shape::Square(s) => s * s,
-        Shape::Rectangle(w, h) => w * h,
-    }
-    }
-    fn main(){
-        let circle = Shape::Circle(5.0);
-        let square = Shape::Square(5.0);
-        let rectangle = Shape::Rectangle(5.0,6.0);
+    // fn cal_area(shape: &Shape)->f64{
+    //     match shape { // this is the pattern matching of the type of the shapes. known as pattern matching.
+    //         // you can also use the if else statement for the pattern matching.
+    //     Shape::Circle(r) => std::f64::consts::PI * r * r,
+    //     Shape::Square(s) => s * s,
+    //     Shape::Rectangle(w, h) => w * h,
+    // }
+    // }
+    // fn main(){
+    //     let circle = Shape::Circle(5.0);
+    //     let square = Shape::Square(5.0);
+    //     let rectangle = Shape::Rectangle(5.0,6.0);
 
-        println!("{:?} area ={}",circle,cal_area(&circle));
-        println!("{:?} area ={}",square,cal_area(&square));
-        println!("{:?} area ={}",rectangle,cal_area(&rectangle));
+    //     println!("{:?} area ={}",circle,cal_area(&circle));
+    //     println!("{:?} area ={}",square,cal_area(&square));
+    //     println!("{:?} area ={}",rectangle,cal_area(&rectangle));
+    // }
+
+
+// Error handling -> Diffenet languages have differnent ways to handle errors. like js have try and catch block. The way to use the error handling is to used the enum result the syntax is kinda hard to understand.
+/*
+    enum Result<T,E>{
+    Ok(T),
+    Err(E)
     }
+    This t and e is known as generic types. 
+*/
+
+// struct Point<T,A,B>{
+//     x:T, // here we have similar types of type T to the x value.
+//     y:T, // here we have similar types of type T to the y value.
+//     a: A,
+//     b:B,
+// }
+// fn main(){
+//     // so you cannot just pass down only two values from the struct you will have to pass all the value which you have decalred in the struct to all the points.
+//     let integer = Point{
+//         x:5,y:8,a:"none",b:false
+//     };
+//     let float = Point{
+//         x:5.24,y:23.32,a:"none",b:false
+//     };
+//     let animal = Point{
+//         a: String::from("Zebra"),x:2,y:12,b:true
+//     };
+//     let boolean = Point{
+//         b: true,a:"aditya",x:12.213,y:12.3231
+//     };
+//     println!("{},{}",integer.x,integer.y);
+//     println!("{},{}",float.x,float.y);
+//     println!("{}",animal.a);
+//     println!("{}",boolean.b);
+// }
+
+// use core::fmt;
+// use std::{fmt::{Debug, Formatter}, fs};
+
+// #[derive(Debug)]
+// pub struct FileReadError {
+
+// }
+
+// fn main() {
+//     let contents = read_file("hello.txt".to_string());
+//     match contents {
+//         Ok(file_content) => {
+//             println!("File content: {}", file_content);
+//         },
+//         Err(error) => {
+//             println!("Error reading file: {:?}", error);
+//         }
+//     }
+// }
+// fn read_file(file_path: String) -> Result<String, FileReadError> {
+//     let greeting_file_result = fs::read_to_string("hello.txt");
+//     match greeting_file_result {
+//         Ok(file_content) => {
+//             Ok(file_content)
+//         },
+//         Err(error) => {
+//             let err = FileReadError {};
+//             Err(err)
+//         }
+//     }
+// }
+
+// Option enum -> It is introduced to handle the nullability of the variables in the rust in a safe and expressive way. 
+
+fn find_first_a(s: String) -> Option<i32> {
+    for (index, character) in s.chars().enumerate() {
+        if character == 'a' {
+            return Some(index as i32);
+        }
+    }
+    return None;
+}
+
+fn main() {
+    let my_string = String::from("raman");
+    match find_first_a(my_string) {
+        Some(index) => println!("The letter 'a' is found at index: {}", index),
+        None => println!("The letter 'a' is not found in the string."),
+    }
+}
+
