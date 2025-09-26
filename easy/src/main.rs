@@ -153,18 +153,45 @@
 //     println!("{:?}",area.para());
 // }
 
-// Now, enums , they are similar to the enums in typescript , they allows you to define a type by enumerating its possible variant.
-enum Directions {
-    north,
-    south,
-    west,
-    east,
-}
-fn main(){
-    let my_direction = Directions::north; // this is used in the game logic implementation.
-    let new_direction = my_direction; // no error cause they are a copy.
-    move_around(new_direction);
-}
-fn move_around(direction: Directions){
+// // Now, enums , they are similar to the enums in typescript , they allows you to define a type by enumerating its possible variant.
+// enum Directions {
+//     north,
+//     south,
+//     west,
+//     east,
+// }
+// fn main(){
+//     let my_direction = Directions::north; // this is used in the game logic implementation.
+//     let new_direction = my_direction; // no error cause they are a copy.
+//     move_around(new_direction);
+// }
+// fn move_around(direction: Directions){
 
-}
+// }
+
+// Now, enum with values ->
+    // Define an enum called shape :-
+
+  #[derive(Debug)]
+    enum Shape{
+        Circle(f64),
+        Square(f64),
+        Rectangle(f64,f64),
+    }
+
+    fn cal_area(shape: &Shape)->f64{
+        match shape {
+        Shape::Circle(r) => std::f64::consts::PI * r * r,
+        Shape::Square(s) => s * s,
+        Shape::Rectangle(w, h) => w * h,
+    }
+    }
+    fn main(){
+        let circle = Shape::Circle(5.0);
+        let square = Shape::Square(5.0);
+        let rectangle = Shape::Rectangle(5.0,6.0);
+
+        println!("{:?} area ={}",circle,cal_area(&circle));
+        println!("{:?} area ={}",square,cal_area(&square));
+        println!("{:?} area ={}",rectangle,cal_area(&rectangle));
+    }
